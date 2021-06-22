@@ -1,0 +1,29 @@
+2021-05-31 00:03:24.185078: create a course
+2021-05-31 02:27:23.021835: create a course
+2021-05-31 02:35:01.487610: course is modified
+2021-05-31 02:59:44.503674: course is modified
+2021-05-31 02:59:59.649129: course is modified
+2021-05-31 03:09:18.134125: create a course
+2021-05-31 03:09:35.144566: course is modified
+2021-05-31 03:09:50.353413: course is modified
+2021-05-31 03:17:30.396922: course is modified
+2021-05-31 03:18:20.958185: course is modified
+2021-05-31 03:18:25.648590: course is modified
+2021-05-31 03:18:35.153453: course is modified
+2021-05-31 06:04:36.280607: course is modified
+2021-05-31 06:06:07.963052: course is modified
+2021-05-31 06:12:03.897534: course is modified
+2021-05-31 06:13:37.658110: course is modified
+2021-05-31 06:14:53.006334: course is modified
+2021-05-31 06:19:25.973618: course is modified
+2021-05-31 06:19:38.012072: course is modified
+————————————————————————
+2021-05-31 13:38:47.071690: create a course
+2021-05-31 13:44:22.125572: create a course
+2021-05-31 14:48:13.361801: create a course
+2021-05-31 14:48:37.257141: course is modified fail, reason: ERROR: Sum of weights is 95, rather than 100
+2021-05-31 14:48:53.721037: course is modified successful
+2021-05-31 14:49:34.136420: course is modified successful
+2021-05-31 14:49:46.123235: course is modified successful
+2021-05-31 18:33:39.874857: course is modified fail, reason: ERROR: Sum of weights is 95, rather than 100
+2021-05-31 18:34:21.555679: course is modified fail, reason: ERROR: Sum of weights is 145, rather than 100
