@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .fileinput-button {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+
+        .fileinput-button input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+    </style>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Edit course</title>
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/font-awesome.css" rel="stylesheet">
+
+    <link href="/static/css/custom.css" rel="stylesheet">
+    <link href="/static/css/animate.css" rel="stylesheet">
+    <link href="/static/css/homepage.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+{% if title %}
+    <div class="alert alert-warning fade in create">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <center><b>{{ title }}</b></center>
+    </div>
+{% endif %}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h1>Course detail</h1>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-bordered white-bg">
+                        <tr>
+                            <th class="col-sm-4"> Key</th>
+                            <th class="col-sm-12"> Value</th>
+                        </tr>
+
+                        <tr>
+                            <td>CourseName</td>
+                            <td><p>{{ course.name }} </p></td>
+                        </tr>
+                        <tr>
+                            <td>CourseCode</td>
+                            <td><p>{{ course.code }} </p></td>
+                        </tr>
+                        <tr>
+                            <td>Year</td>
+                            <td><p>{{ course.academic_year }} </p></td>
+                        </tr>
+                        <tr>
+                            <td>Programme</td>
+                            <td><p>{{ course.programme }} </p></td>
+                        </tr>
+                        <tr>
+                            <td>Type</td>
+                            <td><p>{{ course._type }} </p></td>
+                        </tr>
+
+                        <tr>
+                            <td>CILO 1
+                                {% if course.cilo1_id %}
+                                    <a href="../edit_cilo/{{ course.cilo1_id }}">EDIT</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <form method="post">
+                                    <div class="col-sm-4">
+                                        <input class="form-control m-b" name="CILO1_id" value="{{ cilo1_str }}">
+                                        <button class="btn btn-primary" type="submit">Update</button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CILO 2
+                                {% if course.cilo2_id %}
+                                    <a href="../edit_cilo/{{ course.cilo2_id }}">EDIT</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <form method="post">
+                                    <div class="col-sm-4">
+                                        <input class="form-control m-b" name="CILO2_id" value="{{ cilo2_str }}">
+                                        <button class="btn btn-primary" type="submit">Update</button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>CILO 3
+                                {% if course.cilo3_id %}
+                                    <a href="../edit_cilo/{{ course.cilo3_id }}">EDIT</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <form method="post">
+                                    <div class="col-sm-4">
+                                        <input class="form-control m-b" name="CILO3_id" value="{{ cilo3_str }}">
+                                        <button class="btn btn-primary" type="submit">Update</button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><a {% if course.pre_course1_id %}href="../edit_course/{{ course.pre_course1_id }}"{% endif %}>Prerequisite Course 1</a></td>
+                            <td>
+                                <form method="post">
+                                    <div class="col-sm-12">
+                                        <label>
+                                            <select class="form-control m-b" name="pre1_id">
+                                                <option value="0">None</option>
+                                                {% for __course in course_all %}
+                                                    {% if __course.id == course.pre_course1_id %}
+                                                        <option value="{{ __course.id }}" selected="selected">{{ __course.name }}</option>
+                                                    {% else %}
+                                                        <option value="{{ __course.id }}">{{ __course.name }}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                        </label>
+                                        <button class="btn btn-primary" type="submit">Update</button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><a {% if course.pre_course2_id %}href="../edit_course/{{ course.pre_course2_id }}"{% endif %}>Prerequisite Course 2</a></td>
+                            <td>
+                                <form method="post">
+                                    <div class="col-sm-12">
+                                        <label>
+                                            <select class="form-control m-b" name="pre2_id">
+                                                <option value="0">None</option>
+                                                {% for __course in course_all %}
+                                                    {% if __course.id == course.pre_course2_id %}
+                                                        <option value="{{ __course.id }}" selected="selected">{{ __course.name }}</option>
+                                                    {% else %}
+                                                        <option value="{{ __course.id }}">{{ __course.name }}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                        </label>
+                                        <button class="btn btn-primary" type="submit">Update</button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><a {% if course.pre_course3_id %}href="../edit_course/{{ course.pre_course3_id }}"{% endif %}>Prerequisite Course 3</a></td>
+                            <td>
+                                <form method="post">
+                                    <div class="col-sm-12">
+                                        <label>
+                                            <select class="form-control m-b" name="pre3_id">
+                                                <option value="0">None</option>
+                                                {% for __course in course_all %}
+                                                    {% if __course.id == course.pre_course3_id %}
+                                                        <option value="{{ __course.id }}" selected="selected">{{ __course.name }}</option>
+                                                    {% else %}
+                                                        <option value="{{ __course.id }}">{{ __course.name }}</option>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                        </label>
+                                        <button class="btn btn-primary" type="submit">Update</button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Assessment <br/>
+                                <button class="btn btn-primary" type="button" onclick="add_item();">Add</button>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <form method="post" enctype="multipart/form-data">
+                                        <div class="col-sm-12" id="as_div">
+
+                                            {% for _ass in ass_list %}
+                                                <div class="col-sm-12 input-group m-b as_item">
+                                                    <div class="col-sm-4">
+                                                        <input type="text" placeholder="Assessment1" class="form-control" name="as_name"
+                                                               value="{{ _ass.name }}">
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <input type="text" placeholder="Weight" class="form-control" name="as_weight"
+                                                               value="{{ _ass.weight }}">
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <input type="text" placeholder="CILO(eg:1-2)" class="form-control" name="as_cilo"
+                                                               value="{{ _ass.cilos }}">
+                                                    </div>
+                                                </div>
+
+                                            {% endfor %}
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <center>Import file
+                                                <label class="btn btn-info fileinput-button">
+                                                    <span>File</span>
+                                                    <input id="" type="file" name="assess_file"/>
+                                                </label></center>
+                                        </div>
+                                        <button class="btn btn-primary" type="submit">Update</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/static/bootstrap/js/jquery.min.js"></script>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+<!-- iCheck -->
+<script src="/static/bootstrap/js/icheck.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+
+    function add_item() {
+        console.log("111");
+        $(".as_item:first").clone().appendTo("#as_div");
+        console.log("222");
+    }
+
+</script>
+
+<script src="/static/bootstrap/js/content.js"></script>
+
+</body>
+
+</html>

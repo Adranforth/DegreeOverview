@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .fileinput-button{
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+        .fileinput-button input{
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+    </style>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Create New course</title>
+    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.css" rel="stylesheet">
+
+    <link href="../static/css/custom.css" rel="stylesheet">
+    <link href="../static/css/animate.css" rel="stylesheet">
+    <link href="../static/css/homepage.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    {% if title %}
+    <div class="alert alert-warning fade in create">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <center><b>{{title}}</b></center>
+    </div>
+    {% endif %}
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Create new course form <small> you need to follow the requirement below</small></h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="post" class="form-horizontal" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Course name</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" name="CourseName" class="form-control">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Course Code</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="CourseCode" class="form-control"> <span class="help-block m-b-none">Example:COMP3013</span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Academic year</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="Year" class="form-control"> <span class="help-block m-b-none">Example:1920S1 //From 2019 to 2020, semester 1</span>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Programme</label>
+
+                                <div class="col-sm-2">
+                                    <select class="form-control m-b" name="Programme">
+                                        <option>CST</option>
+                                        <option>DS</option>
+                                        <option>AE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Type</label>
+
+                                <div class="col-sm-2">
+                                    <select class="form-control m-b" name="Type">
+                                        <option>MR</option>
+                                        <option>ME</option>
+                                        <option>GD</option>
+                                        <option>FE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">CILO
+                                    <br/><small class="text-navy">Choose Edit or Import</small>
+                                </label>
+                    
+                                <div class="col-sm-10">
+                                    <div class="col-sm-6">
+                                        <div class="input-group m-b"><span class="input-group-addon">1</span>
+                                            <input type="text" name="CILO1" placeholder="CILO1" class="form-control">
+                                        </div>
+                                        <div class="input-group m-b"><span class="input-group-addon">2</span>
+                                            <input type="text" name="CILO2" placeholder="CILO2" class="form-control">
+                                        </div>
+                                        <div class="input-group m-b"><span class="input-group-addon">3</span>
+                                            <input type="text" name="CILO3" placeholder="CILO3" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <center>Import file
+                                        <label class="btn btn-info fileinput-button">
+                                            <span>File</span>
+                                            <input id="" type="file" name="cilo_file"/>
+                                        </label></center>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Assessment
+                                    <br/><small class="text-navy">Choose Edit or Import</small>
+                                    <br/>
+                                    <button class="btn btn-primary" type="button" onclick="add_item();">Add</button>
+                                </label>
+                    
+                                <div class="col-sm-10">
+                                    <div class="col-sm-6" id="as_div">
+                                        <div class="col-sm-12 input-group m-b as_item">
+                                            <div class="col-sm-4">
+                                                <input type="text" placeholder="Assessment" class="form-control" name="as_name">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input type="text" placeholder="Weight" class="form-control" name="as_weight">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input type="text" placeholder="CILO(eg:1-2)" class="form-control" name="as_cilo">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <center>Import file
+                                        <label class="btn btn-info fileinput-button">
+                                            <span>File</span>
+                                            <input id="" type="file" name="assess_file"/>
+                                        </label></center>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-4 col-sm-offset-6">
+                                    <button class="btn btn-primary" type="submit">Create</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../static/bootstrap/js/jquery.min.js"></script>
+    <script src="../static/bootstrap/js/bootstrap.min.js"></script>
+    <!-- iCheck -->
+    <script src="../static/bootstrap/js/icheck.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });
+        function add_item(){
+            console.log("111");
+            $(".as_item:first").clone().appendTo("#as_div");
+            console.log("222");
+        }
+
+ 
+    </script>
+
+    <script src="../static/bootstrap/js/content.js"></script>
+
+</body>
+
+</html>

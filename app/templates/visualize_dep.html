@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Visualize Dependency</title>
+    <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.css" rel="stylesheet">
+
+    <link href="../static/css/custom.css" rel="stylesheet">
+    <link href="../static/css/animate.css" rel="stylesheet">
+    <link href="../static/css/homepage.css" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="search-form">
+                        <form action="" method="get">
+                            <div class="input-group">
+                                <select class="form-control m-b" name="programme">
+                                    {% for programme in programme_list %}
+                                        {% if keyword == programme %}
+                                            <option selected="selected">{{ programme }}</option>
+                                        {% else %}
+                                            <option>{{ programme }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                                <div class="input-group-btn">
+                                    <button class="btn btn-md btn-primary" type="submit">
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="search-result">
+                        <h1>Found {{ data|length }} records.</h1>
+                        <br/>
+
+                        {% if data|length > 0 %}
+                            <table class="table table-bordered white-bg">
+                                <tr>
+                                    <th>CourseName</th>
+                                    <th>Prerequisite Course 1</th>
+                                    <th>Prerequisite Course 2</th>
+                                    <th>Prerequisite Course 3</th>
+                                </tr>
+                                {% for names in data %}
+                                    <tr>
+                                        <td>{{ names[0] }}</td>
+                                        <td>{{ names[1] }}</td>
+                                        <td>{{ names[2] }}</td>
+                                        <td>{{ names[3] }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="../static/bootstrap/js/jquery.min.js"></script>
+<script src="../static/bootstrap/js/bootstrap.min.js"></script>
+<!-- iCheck -->
+<script src="../static/bootstrap/js/icheck.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+</script>
+
+<!-- 自定义js -->
+<script src="../static/bootstrap/js/content.js"></script>
+
+</body>
+
+</html>
